@@ -46,6 +46,9 @@
     // new marks object
     $marks = new Marks();
 
+    // new phone number object
+    $phone_number = new Phone_Number();
+
     // refining data comming from form input
     function datarefine($data)
     {
@@ -71,6 +74,7 @@
 
       $marks->set_string_marks(datarefine($_POST["textarea"]));
 
+      $phone_number->phone_validate($_POST["phone"]);
     }
     ?>
 
@@ -92,6 +96,10 @@
 
       <!-- image input -->
       Upload Image : <input type="file" id="picture" name="picture"><br><br>
+
+      Phone Number : <input type="text" name="phone" id="phone"><span> *
+        <!-- span showing error for empty value or wrong values -->
+        <?php echo $phone_number->wrong_phone_value . $phone_number->empty_phone_value ?></span><br><br>
 
       <!-- Marks Input -->
       Input Marks : <textarea name="textarea" id="textarea" placeholder="Enter marks in format : Subject|Marks"
@@ -129,7 +137,6 @@
         ?>
         <!-- Table output -->
         <div class="table">
-
           <table>
             <tr>
               <th>Subject</th>
@@ -144,12 +151,10 @@
             }
             ?>
           </table>
-
         </div>
         <?php
       }
       ?>
-
     </div>
   </div>
 </body>
