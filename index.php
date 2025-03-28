@@ -43,6 +43,9 @@
     // new picture object
     $profile_picture = new Picture();
 
+    // new marks object
+    $marks = new Marks();
+
     // refining data comming from form input
     function datarefine($data)
     {
@@ -65,6 +68,9 @@
       // adding picture path to picture object and moving uploaded picture to upload directory
       $profile_picture->set_picture_path();
       $profile_picture->move_picture();
+
+      $marks->set_string_marks(datarefine($_POST["textarea"]));
+
     }
     ?>
 
@@ -86,6 +92,11 @@
 
       <!-- image input -->
       Upload Image : <input type="file" id="picture" name="picture"><br><br>
+
+      <!-- Marks Input -->
+      Input Marks : <textarea name="textarea" id="textarea" placeholder="Enter marks in format : Subject|Marks"
+        rows="10" cols="50"></textarea><br><br>
+
 
       <!-- Submit button -->
       <input type="submit" value="Submit">
@@ -111,7 +122,34 @@
       if (!empty($firstname->get_name_value()) && !empty($lastname->get_name_value())) {
         echo "<h1>Hello " . $firstname->get_name_value() . " " . $lastname->get_name_value() . "</h1>";
       }
+
+      // Table output claculation
+      if (!empty($marks->get_string_marks())) {
+        $marks->set_marks_arr();
+        ?>
+        <!-- Table output -->
+        <div class="table">
+
+          <table>
+            <tr>
+              <th>Subject</th>
+              <th>Marks</th>
+            </tr>
+            <?php
+            foreach ($marks->get_marks_arr() as $val) {
+              echo "<tr>";
+              echo "<td>" . $val[0] . "</td>";
+              echo "<td>" . $val[1] . "</td>";
+              echo "</tr>";
+            }
+            ?>
+          </table>
+
+        </div>
+        <?php
+      }
       ?>
+
     </div>
   </div>
 </body>

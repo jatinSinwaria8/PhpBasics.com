@@ -36,3 +36,12 @@ body {
   object-fit: cover;
   object-position: center center;
 }
+
+/* form textarea to table stylings */
+table,
+tr,
+td,
+th {
+  border: 2px solid black;
+  padding: 5px;
+}
