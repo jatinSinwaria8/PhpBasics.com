@@ -1,0 +1,23 @@
+/* basic styles for phpbasic tasks */
+
+body {
+  padding: 50px;
+}
+
+/* php form div stylings */
+.phpform {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+/* formoutput div stylings */
+.formoutput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
