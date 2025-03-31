@@ -15,7 +15,7 @@ class Phone_Number
   {
     $this->phone_value = $phone_value;
   }
-  public function get_name_value()
+  public function get_phone_value()
   {
     return $this->phone_value;
   }

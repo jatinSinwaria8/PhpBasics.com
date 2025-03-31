@@ -39,7 +39,7 @@ class Name
       $this->wrong_name_value = "";
     } elseif (!preg_match(Pattern, $which_name_field)) {
       // if firstname is wrong show error
-      $this->wrong_name_value = "Input can only contain alphabets";
+      $this->wrong_name_value = "Name inputs can only contain alphabets!";
       $this->name_value = "";
       $this->empty_name_value = "";
 

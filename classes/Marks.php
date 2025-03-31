@@ -3,7 +3,6 @@
 // Marks class for marks processing and storage
 class Marks
 {
-
   private $string_marks;
   private $marks_arr;
 
@@ -34,9 +33,7 @@ class Marks
       $this->marks_arr[$index][0] = $temp[0];
       $this->marks_arr[$index][1] = (int) $temp[1];
       $index++;
-
     }
-
   }
 
   public function get_marks_arr()
