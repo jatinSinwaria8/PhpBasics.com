@@ -49,6 +49,9 @@
     // new phone number object
     $phone_number = new Phone_Number();
 
+    // new email object
+    $email_addr = new Email_Address();
+
     // refining data comming from form input
     function datarefine($data)
     {
@@ -72,9 +75,14 @@
       $profile_picture->set_picture_path();
       $profile_picture->move_picture();
 
+      // setting marks
       $marks->set_string_marks(datarefine($_POST["textarea"]));
 
+      // validating PhoneNumber
       $phone_number->phone_validate($_POST["phone"]);
+
+      // validating email address
+      $email_addr->email_validate($_POST["email"]);
     }
     ?>
 
@@ -105,9 +113,12 @@
       Input Marks : <textarea name="textarea" id="textarea" placeholder="Enter marks in format : Subject|Marks"
         rows="10" cols="50"></textarea><br><br>
 
+      Email Address : <input type="text" name="email" id="email"><span> *
+        <!-- span showing error for invalid syntax or wrong values -->
+        <?php echo $email_addr->invalid_syntax_email_value . $email_addr->wrong_email_value ?></span><br><br>
 
       <!-- Submit button -->
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit"><br>
     </form>
 
     <!-- all fom outputs in this div -->
