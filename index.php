@@ -1,3 +1,14 @@
+<?php
+// start of session
+session_start();
+// check if user is logged in session or not
+if (!isset($_SESSION["login"]) || $_SESSION["login"] == false) {
+  //  redirect to login.php
+  header('Location: login.php');
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,39 +28,85 @@
 </head>
 
 <body>
+  <!-- navigation bar to move arround pages -->
+  <header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="./index.php?q=1">Question 1</a></li>
+          <li><a href="./index.php?q=2">Question 2</a></li>
+          <li><a href="./index.php?q=3">Question 3</a></li>
+          <li><a href="./index.php?q=4">Question 4</a></li>
+          <li><a href="./index.php?q=5">Question 5</a></li>
+          <li><a href="./index.php?q=6">Question 6</a></li>
+          <li><a href="./logout.php">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <div class="phpform">
+  <main>
+    <!-- main section -->
+    <section class="all-tasks">
+      <div class="container">
+        <div class="all-tasks-wrapper">
+          <?php
+          // autoloader function to include classes 
+          spl_autoload_register(function ($class) {
+            include "./classes/" . $class . ".php";
+          });
 
-    <!-- basic html form with input values of firstname, lastname, fullname and a submit button -->
-    <form method="post" action="form_action.php" enctype="multipart/form-data">
+          // refine incomming data
+          function datarefine($data)
+          {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+          }
 
-      <!-- firstName input -->
-      First Name : <input type="text" id="firstname" name="firstname"><br><br>
+          if (!isset($_GET['q'])) {
+            $_GET['q'] = 1;
+          }
 
-      <!-- lastName input -->
-      Last Name : <input type="text" id="lastname" name="lastname"><br><br>
+          // different cases to include different tasks
+          switch ($_GET['q']) {
 
-      <!-- lastName input -->
-      Full Name : <input type="text" id="fullname" name="fullname" disabled><br><br>
+            case 1:
+              include "./tasks/task1.php";
+              break;
 
-      <!-- image input -->
-      Upload Image : <input type="file" id="picture" name="picture"><br><br>
+            case 2:
+              include "./tasks/task2.php";
+              break;
 
-      Phone Number : <input type="text" name="phone" id="phone"><br><br>
+            case 3:
+              include "./tasks/task3.php";
+              break;
 
-      <!-- Marks Input -->
-      Input Marks : <textarea name="textarea" id="textarea" placeholder="Enter marks in format : Subject|Marks"
-        rows="10" cols="50"></textarea><br><br>
+            case 4:
+              include "./tasks/task4.php";
+              break;
 
-      <!-- email input -->
-      Email Address : <input type="text" name="email" id="email"><br><br>
+            case 5:
+              include "./tasks/task5.php";
+              break;
 
-      <!-- Submit button -->
-      <input type="submit" value="Submit"><br>
-    </form>
+            case 6:
+              include "./tasks/task6.php";
+              break;
 
+            default:
+              include "./tasks/task1.php";
+              break;
 
-  </div>
+          }
+          ?>
+        </div>
+      </div>
+    </section>
+  </main>
+
 </body>
 
 </html>
