@@ -18,18 +18,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- firstName input -->
     First Name : <input type="text" id="firstname" name="firstname">
     <!-- span showing error for empty value or wrong values -->
-    <span> * <?php echo $firstname->wrong_name_value . $firstname->empty_name_value ?></span><br><br>
+    <span> * <?php echo $firstname->wrong_name_value . $firstname->empty_name_value ?></span>
+    <p id="first-name-err" class="error">First name cannot be empty</p>
+     <br>
 
     <!-- lastName input -->
     Last Name : <input type="text" id="lastname" name="lastname"><span> *
       <!-- span showing error for empty value or wrong values -->
-      <?php echo $lastname->wrong_name_value . $lastname->empty_name_value ?></span><br><br>
+      <?php echo $lastname->wrong_name_value . $lastname->empty_name_value ?></span>
+      <br>
+      <p id="last-name-err" class="error">Last name cannot be empty</p>
 
     <!-- lastName input -->
     Full Name : <input type="text" id="fullname" name="fullname" disabled><br><br>
 
     <!-- Submit button -->
-    <input type="submit" value="Submit"><br>
+    <input id="submit" type="submit" value="Submit"><br>
 
   </form>
 

@@ -6,6 +6,12 @@
   transition: 0.3s ease-in-out;
 }
 
+.error {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 /* form button stylings  */
 form input[type="submit"] {
   background-color: #006a71 !important;
@@ -20,6 +26,12 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
   background-color: #f2efe7 !important;
   color: #013033 !important;
+}
+form input[type="submit"]:disabled {
+  background-color: #f2efe79f !important;
+  opacity: 75%;
+  color: #013033 !important;
+  cursor: not-allowed;
 }
 
 /* container wwith max wwidth */

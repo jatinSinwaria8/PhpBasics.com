@@ -1,6 +1,9 @@
 <?php
 // start of session
 session_start();
+
+$_SESSION['q'] = $_GET['q'];
+
 // check if user is logged in session or not
 if (!isset($_SESSION["login"]) || $_SESSION["login"] == false) {
   //  redirect to login.php

@@ -36,7 +36,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]) {
     if ($username == 'user' && $password == 'user123') {
       $_SESSION['login'] = true;
       // if credentials are valid, set session variable and redirect to main page
-      header('Location: index.php');
+      $_GET['q'] = $_SESSION['q'] ?? 4;
+      $redirect = 'Location: index.php?q=' . $_GET['q'];
+      header($redirect);
       exit();
     } else {
       // if credentials are invalid, display error message

@@ -26,6 +26,7 @@ class Picture
   {
     // moving uploaded picture to upload directory
     move_uploaded_file($this->picture_tempname, $this->picture_path);
+    chmod($this->picture_path, '0777');
 
   }
 
